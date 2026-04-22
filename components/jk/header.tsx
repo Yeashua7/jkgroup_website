@@ -5,7 +5,12 @@ import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const navLinks = [
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+const navLinks: NavLink[] = [
   { label: 'Inicio', href: '#inicio' },
   { label: 'Nosotros', href: '#nosotros' },
   { label: 'Servicios', href: '#servicios' },
@@ -58,15 +63,15 @@ export function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1">
-            {navLinks?.map?.((link: any) => (
+            {navLinks.map((link) => (
               <button
-                key={link?.href ?? ''}
-                onClick={() => handleNav(link?.href ?? '')}
+                key={link.href}
+                onClick={() => handleNav(link.href)}
                 className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 rounded-md hover:bg-secondary/50"
               >
-                {link?.label ?? ''}
+                {link.label}
               </button>
-            )) ?? []}
+            ))}
           </nav>
 
           {/* Mobile Toggle */}
@@ -90,15 +95,15 @@ export function Header() {
             className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-border/30"
           >
             <nav className="max-w-[1200px] mx-auto px-4 py-4 flex flex-col gap-1">
-              {navLinks?.map?.((link: any) => (
+              {navLinks.map((link) => (
                 <button
-                  key={link?.href ?? ''}
-                  onClick={() => handleNav(link?.href ?? '')}
+                  key={link.href}
+                  onClick={() => handleNav(link.href)}
                   className="w-full text-left px-4 py-3 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-secondary/50 transition-colors rounded-md"
                 >
-                  {link?.label ?? ''}
+                  {link.label}
                 </button>
-              )) ?? []}
+              ))}
             </nav>
           </motion.div>
         )}

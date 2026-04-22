@@ -2,9 +2,15 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Gem, HeartHandshake, Sparkles, Clock, ShieldCheck, Globe } from 'lucide-react';
+import { Gem, HeartHandshake, Sparkles, Clock, ShieldCheck, Globe, LucideIcon } from 'lucide-react';
 
-const reasons = [
+interface Reason {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
+
+const reasons: Reason[] = [
   {
     icon: Gem,
     title: 'Calidad Premium',
@@ -62,11 +68,11 @@ export function WhyUsSection() {
 
         {/* Reasons Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reasons?.map?.((reason: any, i: number) => {
-            const Icon = reason?.icon;
+          {reasons.map((reason, i) => {
+            const Icon = reason.icon;
             return (
               <motion.div
-                key={reason?.title ?? i}
+                key={reason.title}
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.15 * i }}
@@ -77,11 +83,11 @@ export function WhyUsSection() {
                     <Icon className="w-6 h-6 text-background" />
                   </div>
                 )}
-                <h3 className="font-display font-bold text-lg text-foreground mb-3">{reason?.title ?? ''}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{reason?.description ?? ''}</p>
+                <h3 className="font-display font-bold text-lg text-foreground mb-3">{reason.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{reason.description}</p>
               </motion.div>
             );
-          }) ?? []}
+          })}
         </div>
       </div>
     </section>

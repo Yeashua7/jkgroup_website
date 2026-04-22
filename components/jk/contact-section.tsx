@@ -11,19 +11,20 @@ export function ContactSection() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    service: '',
     subject: '',
     message: '',
   });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({ ...(prev ?? {}), [e?.target?.name ?? '']: e?.target?.value ?? '' }));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e?.preventDefault?.();
-    if (!formData?.name || !formData?.email || !formData?.subject || !formData?.message) {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       toast.error('Por favor complete todos los campos.');
       return;
     }
@@ -34,14 +35,14 @@ export function ContactSection() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      if (res?.ok) {
+      if (res.ok) {
         setSubmitted(true);
         toast.success('Mensaje enviado exitosamente.');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFormData({ name: '', email: '', service: '', subject: '', message: '' });
       } else {
         toast.error('Error al enviar el mensaje. Intente nuevamente.');
       }
-    } catch (err: any) {
+    } catch (err) {
       console.error('Contact form error:', err);
       toast.error('Error de conexión. Intente nuevamente.');
     } finally {
@@ -84,7 +85,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground text-sm">Email</h4>
-                  <p className="text-muted-foreground text-sm">info@jkgroup.com</p>
+                  <p className="text-muted-foreground text-sm">contacto@jkgroup.com</p>
                 </div>
               </div>
             </div>
@@ -95,7 +96,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground text-sm">Teléfono</h4>
-                  <p className="text-muted-foreground text-sm">+1 (555) 000-0000</p>
+                  <p className="text-muted-foreground text-sm">+52 55 1234 5678</p>
                 </div>
               </div>
             </div>
@@ -106,7 +107,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground text-sm">Ubicación</h4>
-                  <p className="text-muted-foreground text-sm">Oficina Principal</p>
+                  <p className="text-muted-foreground text-sm">Ciudad de México</p>
                 </div>
               </div>
             </div>
@@ -146,7 +147,7 @@ export function ContactSection() {
                       <input
                         type="text"
                         name="name"
-                        value={formData?.name ?? ''}
+                        value={formData.name}
                         onChange={handleChange}
                         placeholder="Su nombre"
                         className="w-full px-4 py-3 bg-secondary/50 border border-border/30 rounded-lg text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm"
@@ -160,7 +161,7 @@ export function ContactSection() {
                       <input
                         type="email"
                         name="email"
-                        value={formData?.email ?? ''}
+                        value={formData.email}
                         onChange={handleChange}
                         placeholder="su@email.com"
                         className="w-full px-4 py-3 bg-secondary/50 border border-border/30 rounded-lg text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm"
@@ -169,23 +170,42 @@ export function ContactSection() {
                     </div>
                   </div>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Asunto</label>
-                  <input
-                    type="text"
-                    name="subject"
-                    value={formData?.subject ?? ''}
-                    onChange={handleChange}
-                    placeholder="Asunto de su mensaje"
-                    className="w-full px-4 py-3 bg-secondary/50 border border-border/30 rounded-lg text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm"
-                    required
-                  />
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Servicio de Interés</label>
+                    <select
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-secondary/50 border border-border/30 rounded-lg text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm appearance-none"
+                    >
+                      <option value="">Opcional: Seleccione un servicio</option>
+                      <option value="RAIPRO">RAIPRO (Desarrollo Inmobiliario)</option>
+                      <option value="INTEGRA 360">INTEGRA 360° (Gestión Residencial)</option>
+                      <option value="JK WASH">JK WASH (Lavado Automotriz)</option>
+                      <option value="Acordes Kitchen">Acordes Fire & Clay Kitchen</option>
+                      <option value="JK Infinity Shipping">JK Infinity Shipping</option>
+                      <option value="Otro">Otro / Consulta General</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Asunto</label>
+                    <input
+                      type="text"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      placeholder="Asunto de su mensaje"
+                      className="w-full px-4 py-3 bg-secondary/50 border border-border/30 rounded-lg text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm"
+                      required
+                    />
+                  </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">Mensaje</label>
                   <textarea
                     name="message"
-                    value={formData?.message ?? ''}
+                    value={formData.message}
                     onChange={handleChange}
                     placeholder="Cuéntenos sobre su proyecto o consulta..."
                     rows={5}

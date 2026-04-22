@@ -17,7 +17,7 @@ export function HeroSection() {
       {/* Background Image with overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://cdn.abacus.ai/images/fd1b426b-ae84-4759-bdc1-3afab4432326.png"
+          src="/hero-bg.png"
           alt="Skyline corporativo JKGROUP"
           fill
           className="object-cover"

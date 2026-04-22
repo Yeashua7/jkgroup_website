@@ -1,16 +1,27 @@
 "use client";
 
 import Image from 'next/image';
-import { Facebook, Instagram, Linkedin, MessageCircle } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, MessageCircle, LucideIcon } from 'lucide-react';
 
-const socialLinks = [
-  { icon: Facebook, label: 'Facebook', href: '#' },
-  { icon: Instagram, label: 'Instagram', href: '#' },
-  { icon: Linkedin, label: 'LinkedIn', href: '#' },
-  { icon: MessageCircle, label: 'WhatsApp', href: '#' },
+interface SocialLink {
+  icon: LucideIcon;
+  label: string;
+  href: string;
+}
+
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+const socialLinks: SocialLink[] = [
+  { icon: Facebook, label: 'Facebook', href: 'https://facebook.com' },
+  { icon: Instagram, label: 'Instagram', href: 'https://instagram.com' },
+  { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
+  { icon: MessageCircle, label: 'WhatsApp', href: 'https://wa.me/525512345678' },
 ];
 
-const navLinks = [
+const navLinks: NavLink[] = [
   { label: 'Inicio', href: '#inicio' },
   { label: 'Nosotros', href: '#nosotros' },
   { label: 'Servicios', href: '#servicios' },
@@ -46,15 +57,15 @@ export function Footer() {
           <div>
             <h4 className="font-display font-semibold text-sm text-foreground mb-4">Navegación</h4>
             <nav className="flex flex-col gap-2">
-              {navLinks?.map?.((link: any) => (
+              {navLinks.map((link) => (
                 <button
-                  key={link?.href ?? ''}
-                  onClick={() => handleNav(link?.href ?? '')}
+                  key={link.href}
+                  onClick={() => handleNav(link.href)}
                   className="text-sm text-muted-foreground hover:text-primary transition-colors text-left"
                 >
-                  {link?.label ?? ''}
+                  {link.label}
                 </button>
-              )) ?? []}
+              ))}
             </nav>
           </div>
 
@@ -62,19 +73,21 @@ export function Footer() {
           <div>
             <h4 className="font-display font-semibold text-sm text-foreground mb-4">Síguenos</h4>
             <div className="flex gap-3">
-              {socialLinks?.map?.((social: any) => {
-                const Icon = social?.icon;
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
                 return (
                   <a
-                    key={social?.label ?? ''}
-                    href={social?.href ?? '#'}
-                    aria-label={social?.label ?? ''}
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
                     className="w-10 h-10 rounded-lg bg-secondary/50 border border-border/20 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
                   >
-                    {Icon && <Icon className="w-5 h-5" />}
+                    <Icon className="w-5 h-5" />
                   </a>
                 );
-              }) ?? []}
+              })}
             </div>
           </div>
         </div>

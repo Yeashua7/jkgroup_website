@@ -29,7 +29,16 @@ function CountUp({ end, suffix = '' }: { end: number; suffix?: string }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-const stats = [
+import { LucideIcon } from 'lucide-react';
+
+interface Stat {
+  icon: LucideIcon;
+  value: number;
+  suffix: string;
+  label: string;
+}
+
+const stats: Stat[] = [
   { icon: Users, value: 500, suffix: '+', label: 'Clientes Satisfechos' },
   { icon: Award, value: 5, suffix: '', label: 'Marcas Premium' },
   { icon: TrendingUp, value: 10, suffix: '+', label: 'Años de Experiencia' },
@@ -98,11 +107,11 @@ export function AboutSection() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {stats?.map?.((stat: any, i: number) => {
-            const Icon = stat?.icon;
+          {stats.map((stat, i) => {
+            const Icon = stat.icon;
             return (
               <motion.div
-                key={stat?.label ?? i}
+                key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
@@ -110,12 +119,12 @@ export function AboutSection() {
               >
                 {Icon && <Icon className="w-8 h-8 text-primary mx-auto mb-3" />}
                 <div className="font-display font-bold text-3xl sm:text-4xl gold-gradient mb-2">
-                  <CountUp end={stat?.value ?? 0} suffix={stat?.suffix ?? ''} />
+                  <CountUp end={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="text-sm text-muted-foreground">{stat?.label ?? ''}</p>
+                <p className="text-sm text-muted-foreground">{stat.label}</p>
               </motion.div>
             );
-          }) ?? []}
+          })}
         </div>
       </div>
     </section>
