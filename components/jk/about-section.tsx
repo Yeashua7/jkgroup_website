@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Target, Eye, Shield, Award, Users, TrendingUp } from 'lucide-react';
+import { Target, Eye, Shield, Award, Users, TrendingUp, LucideIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 function CountUp({ end, suffix = '' }: { end: number; suffix?: string }) {
@@ -28,8 +28,6 @@ function CountUp({ end, suffix = '' }: { end: number; suffix?: string }) {
 
   return <span ref={ref}>{count}{suffix}</span>;
 }
-
-import { LucideIcon } from 'lucide-react';
 
 interface Stat {
   icon: LucideIcon;

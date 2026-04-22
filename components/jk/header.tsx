@@ -15,7 +15,6 @@ const navLinks: NavLink[] = [
   { label: 'Nosotros', href: '#nosotros' },
   { label: 'Servicios', href: '#servicios' },
   { label: '¿Por Qué Elegirnos?', href: '#porque' },
-  { label: 'Contacto', href: '#contacto' },
 ];
 
 export function Header() {

@@ -13,15 +13,7 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const submissionData = {
-      name,
-      email,
-      subject,
-      message,
-    }
-
-    // Include service if it exists in schema, otherwise just store it in the message
-    // Since schema currently has: name, email, subject, message
+    // Include service if it exists, prepend to the message
     const fullMessage = service ? `[Servicio de Interés: ${service}]\n\n${message}` : message;
 
     const submission = await prisma.contactSubmission.create({
