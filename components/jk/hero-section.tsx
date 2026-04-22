@@ -9,7 +9,7 @@ export function HeroSection() {
     document.querySelector('#servicios')?.scrollIntoView?.({ behavior: 'smooth' });
   };
   const scrollToContact = () => {
-    window.open('https://wa.me/525512345678?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20JKGROUP', '_blank');
+    window.open('https://wa.me/50369940103', '_blank');
   };
 
   return (

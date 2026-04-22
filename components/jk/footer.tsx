@@ -17,8 +17,7 @@ interface NavLink {
 const socialLinks: SocialLink[] = [
   { icon: Facebook, label: 'Facebook', href: 'https://facebook.com' },
   { icon: Instagram, label: 'Instagram', href: 'https://instagram.com' },
-  { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
-  { icon: MessageCircle, label: 'WhatsApp', href: 'https://wa.me/525512345678' },
+  { icon: MessageCircle, label: 'WhatsApp', href: 'https://wa.me/50369940103' },
 ];
 
 const navLinks: NavLink[] = [
@@ -94,7 +93,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-border/15 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted-foreground">
-            © 2026 JKGROUP. Todos los derechos reservados.
+            © 2023 JKGROUP. Todos los derechos reservados.
           </p>
           <p className="text-xs text-muted-foreground/60">
             Liderazgo y Estrategia

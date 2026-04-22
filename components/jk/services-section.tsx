@@ -12,16 +12,22 @@ interface Service {
   image: string;
   icon: LucideIcon;
   accent: string;
+  imageFit?: 'cover' | 'contain';
+  imagePadding?: string;
+  imageBg?: string;
 }
 
 const services: Service[] = [
   {
     name: 'RAIPRO',
     subtitle: 'Raíces de Progreso',
-    description: 'Desarrollo inmobiliario con visión de futuro. Creamos comunidades premium que combinan diseño innovador con calidad constructiva de primera clase.',
+    description: 'Transformando Vidas, Construyendo futuros',
     image: '/raipro.png',
     icon: Building2,
     accent: 'from-blue-500/20 to-blue-600/5',
+    imageFit: 'contain',
+    imagePadding: 'p-12 sm:p-16',
+    imageBg: 'bg-white/5',
   },
   {
     name: 'INTEGRA 360°',
@@ -30,6 +36,9 @@ const services: Service[] = [
     image: '/integra360.png',
     icon: Home,
     accent: 'from-emerald-500/20 to-emerald-600/5',
+    imageFit: 'cover',
+    imagePadding: '',
+    imageBg: '',
   },
   {
     name: 'JK WASH',
@@ -38,6 +47,9 @@ const services: Service[] = [
     image: '/jkwash.png',
     icon: Car,
     accent: 'from-cyan-500/20 to-cyan-600/5',
+    imageFit: 'contain',
+    imagePadding: 'p-12 sm:p-16',
+    imageBg: 'bg-white/5',
   },
   {
     name: 'Acordes Fire & Clay Kitchen',
@@ -46,6 +58,9 @@ const services: Service[] = [
     image: '/acordes_kitchen.png',
     icon: UtensilsCrossed,
     accent: 'from-orange-500/20 to-orange-600/5',
+    imageFit: 'contain',
+    imagePadding: 'p-12 sm:p-16',
+    imageBg: 'bg-white/5',
   },
   {
     name: 'JK INFINITY SHIPPING',
@@ -54,6 +69,9 @@ const services: Service[] = [
     image: '/jkinfinity_shipping.png',
     icon: Ship,
     accent: 'from-violet-500/20 to-violet-600/5',
+    imageFit: 'contain',
+    imagePadding: 'p-12 sm:p-16',
+    imageBg: 'bg-white/5',
   },
 ];
 
@@ -108,14 +126,18 @@ function ServiceCard({ service, Icon, isEven, index }: { service: Service; Icon:
     >
       <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
         {/* Image */}
-        <div className="relative lg:w-1/2 aspect-video lg:aspect-auto lg:min-h-[320px] overflow-hidden">
-          <Image
-            src={service.image}
-            alt={`${service.name} - ${service.subtitle}`}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className={`absolute inset-0 bg-gradient-to-t ${service.accent} opacity-60`} />
+        <div className={`relative lg:w-1/2 flex items-center justify-center aspect-video lg:aspect-auto lg:min-h-[320px] overflow-hidden ${service.imageBg || ''} ${service.imagePadding || ''}`}>
+          <div className="relative w-full h-full flex items-center justify-center drop-shadow-2xl">
+            <Image
+              src={service.image}
+              alt={`${service.name} - ${service.subtitle}`}
+              fill
+              className={`object-${service.imageFit || 'cover'} transition-transform duration-700 group-hover:scale-105`}
+            />
+          </div>
+          {service.imageFit !== 'contain' && (
+            <div className={`absolute inset-0 bg-gradient-to-t ${service.accent} opacity-60 pointer-events-none`} />
+          )}
         </div>
 
         {/* Content */}

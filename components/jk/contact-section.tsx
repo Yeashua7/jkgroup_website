@@ -85,7 +85,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground text-sm">Email</h4>
-                  <p className="text-muted-foreground text-sm">contacto@jkgroup.com</p>
+                  <p className="text-muted-foreground text-sm">jkgroupsv@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -96,7 +96,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground text-sm">Teléfono</h4>
-                  <p className="text-muted-foreground text-sm">+52 55 1234 5678</p>
+                  <p className="text-muted-foreground text-sm">+503 6994-0103</p>
                 </div>
               </div>
             </div>
@@ -107,7 +107,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground text-sm">Ubicación</h4>
-                  <p className="text-muted-foreground text-sm">Ciudad de México</p>
+                  <p className="text-muted-foreground text-sm">San Salvador, El Salvador</p>
                 </div>
               </div>
             </div>
@@ -180,8 +180,8 @@ export function ContactSection() {
                       className="w-full px-4 py-3 bg-secondary/50 border border-border/30 rounded-lg text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm appearance-none"
                     >
                       <option value="">Opcional: Seleccione un servicio</option>
-                      <option value="RAIPRO">RAIPRO (Desarrollo Inmobiliario)</option>
-                      <option value="INTEGRA 360">INTEGRA 360° (Gestión Residencial)</option>
+                      <option value="RAIPRO">RAIPRO (ONG)</option>
+                      <option value="INTEGRA 360">INTEGRA 360° (Gestión de Servicios Residenciales)</option>
                       <option value="JK WASH">JK WASH (Lavado Automotriz)</option>
                       <option value="Acordes Kitchen">Acordes Fire & Clay Kitchen</option>
                       <option value="JK Infinity Shipping">JK Infinity Shipping</option>
